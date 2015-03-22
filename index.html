@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>1994 Belgian Wage Analysis App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="1994 Belgian Wage Analysis App">
+  <meta name="author" content="Martin Richard">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>1994 Belgian Wage Analysis App</h1>
+    <h2></h2>
+    <p>Martin Richard<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Purpose of App</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Use economic data from the Ecdat package to see difference between different experience levels and education of Belgian workers</li>
+<li>Plots data and allows user to view data points of specific entries</li>
+<li>Reports mean of the subset</li>
+<li>App is available to use on <a href="https://mjrichard.shinyapps.io/AppBelgiumWage">shinyapps</a></li>
+<li>Convenient visualization of the data</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Interactivity</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Multiple Options are given for which subset of the data to observe</li>
+<li>Look at wages for
+
+<ul>
+<li>The entire data set</li>
+<li>A specific amount of experience across all education levels</li>
+<li>A specific amount of education across all experience levels</li>
+<li>A specific education and experience level
+
+<ul>
+<li>Will produce some empty data sets for some selections</li>
+</ul></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>About the dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>From the Ecdat package (available from CRAN)</li>
+<li>Variables are
+
+<ul>
+<li>wage: Gross hourly wage in euro</li>
+<li>educ: Education level on a scale from 1 to 5</li>
+<li>exper: years of experience</li>
+<li>sex: values not actually included in dataset</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">library(Ecdat)
+data(Bwages)
+str(Bwages)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    1472 obs. of  4 variables:
+##  $ wage : num  7.78 4.82 10.56 7.04 7.89 ...
+##  $ educ : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ exper: int  23 15 31 32 9 15 26 23 13 22 ...
+##  $ sex  : Factor w/ 1 level &quot;1=&#39;male&#39;;0=&#39;female&#39;&quot;: NA NA NA NA NA NA NA NA NA NA ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Sample plot of the entire dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The mean of the data is </p>
+
+<pre><code class="r">mean(Bwages$wage)
+</code></pre>
+
+<pre><code>## [1] 11.05062
+</code></pre>
+
+<pre><code class="r">qplot(exper, wage, data=Bwages,xlim=c(0,47),ylim=c(0,50), col=educ)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Purpose of App'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Interactivity'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='About the dataset'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Sample plot of the entire dataset'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

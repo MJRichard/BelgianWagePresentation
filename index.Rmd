@@ -1,0 +1,71 @@
+---
+title       : 1994 Belgian Wage Analysis App
+subtitle    : 
+author      : Martin Richard
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Purpose of App
+
+* Use economic data from the Ecdat package to see difference between different experience levels and education of Belgian workers
+* Plots data and allows user to view data points of specific entries
+* Reports mean of the subset
+* App is available to use on [shinyapps](https://mjrichard.shinyapps.io/AppBelgiumWage)
+* Convenient visualization of the data
+
+---  
+
+## Interactivity
+
+* Multiple Options are given for which subset of the data to observe
+* Look at wages for
+    * The entire data set
+    * A specific amount of experience across all education levels
+    * A specific amount of education across all experience levels
+    * A specific education and experience level
+        * Will produce some empty data sets for some selections
+
+---
+
+## About the dataset
+
+* From the Ecdat package (available from CRAN)
+* Variables are
+    * wage: Gross hourly wage in euro
+    * educ: Education level on a scale from 1 to 5
+    * exper: years of experience
+    * sex: values not actually included in dataset
+
+        
+```{r, message=FALSE}
+library(Ecdat)
+data(Bwages)
+str(Bwages)
+```
+
+---
+
+## Sample plot of the entire dataset
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+The mean of the data is 
+```{r}
+mean(Bwages$wage)
+```
+
+```{r, fig.height=4, fig.width=6}
+qplot(exper, wage, data=Bwages,xlim=c(0,47),ylim=c(0,50), col=educ)
+
+```
+
+
+
+
